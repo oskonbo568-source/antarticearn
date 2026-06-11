@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AntarcticEarn - Task & Group Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            min-height: 100vh;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.3);
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header .emoji {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        header p {
+            font-size: 1.3em;
+            color: #e9d5ff;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #9333ea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid #f3e8ff;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+            border-color: #9333ea;
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: #7e22ce;
+            font-size: 1.5em;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        .bonus-section {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.15);
+            border-left: 5px solid #9333ea;
+        }
+
+        .bonus-section h2 {
+            color: #7e22ce;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .bonus-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .bonus-box {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #d8b4fe;
+        }
+
+        .bonus-box h3 {
+            color: #7e22ce;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .bonus-box ul {
+            list-style: none;
+            color: #6b7280;
+        }
+
+        .bonus-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9d5ff;
+        }
+
+        .bonus-box li:last-child {
+            border-bottom: none;
+        }
+
+        .bonus-highlight {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .vip-tiers {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.15);
+        }
+
+        .vip-tiers h2 {
+            color: #7e22ce;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .vip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .vip-card {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #d8b4fe;
+            transition: all 0.3s ease;
+        }
+
+        .vip-card:hover {
+            background: linear-gradient(135deg, #e9d5ff 0%, #ddd6fe 100%);
+            border-color: #9333ea;
+            transform: scale(1.05);
+        }
+
+        .vip-card .badge {
+            background: #9333ea;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: inline-block;
+            font-size: 0.9em;
+        }
+
+        .vip-card .amount {
+            color: #9333ea;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .pages-section {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.15);
+        }
+
+        .pages-section h2 {
+            color: #7e22ce;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .page-item {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #d8b4fe;
+        }
+
+        .page-item h3 {
+            color: #7e22ce;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .page-item p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .page-item .features-list {
+            list-style: none;
+            color: #6b7280;
+        }
+
+        .page-item .features-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid #e9d5ff;
+        }
+
+        .page-item .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .page-item .features-list li:before {
+            content: "✓ ";
+            color: #9333ea;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .payment-info {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #9333ea;
+            margin: 30px 0;
+        }
+
+        .payment-info h3 {
+            color: #7e22ce;
+            margin-bottom: 15px;
+        }
+
+        .bank-details {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #d8b4fe;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .bank-details .account-number {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #9333ea;
+            margin-bottom: 8px;
+        }
+
+        .bank-details .account-name {
+            color: #6b7280;
+            font-size: 0.95em;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.3);
+        }
+
+        footer p {
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        footer .social-links {
+            margin-top: 20px;
+        }
+
+        footer .social-links a {
+            color: #e9d5ff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        footer .social-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .bonus-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .pages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .bonus-section,
+            .vip-tiers,
+            .pages-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <span class="emoji">🚀</span>
+            <h1>AntarcticEarn</h1>
+            <p>Earn Money by Joining Groups & Completing Tasks</p>
+            <p style="font-size: 1em; margin-top: 15px;">Start with a free ₦500 bonus! Join our community, complete tasks, and withdraw your earnings twice a month.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/oskonbo568-source/antarticearn" class="btn btn-primary">View on GitHub</a>
+                <a href="https://github.com/oskonbo568-source/antarticearn#readme" class="btn btn-secondary">Read Documentation</a>
+            </div>
+        </header>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-card">
+                <span class="feature-icon">📋</span>
+                <h3>Tasks</h3>
+                <p>Browse and complete various tasks to earn money. Surveys, videos, app downloads, and more!</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <h3>Teams & Groups</h3>
+                <p>Join groups and collaborate with other members. Get group bonuses and exclusive perks.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💰</span>
+                <h3>Deposits</h3>
+                <p>Deposit via bank transfer and unlock VIP benefits. 9 VIP tiers with increasing rewards.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🏦</span>
+                <h3>Withdrawals</h3>
+                <p>Withdraw on the 10th and 30th of every month. Quick processing, 2-3 business days.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Dashboard</h3>
+                <p>Track your balance, earnings, transactions, and VIP status in one place.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📢</span>
+                <h3>Ads</h3>
+                <p>Earn extra by viewing and interacting with advertisements across the platform.</p>
+            </div>
+        </section>
+
+        <!-- Welcome Bonus Section -->
+        <section class="bonus-section">
+            <h2>🎁 Welcome Bonus</h2>
+            <div class="bonus-content">
+                <div class="bonus-box">
+                    <h3>✅ Easy Requirements</h3>
+                    <ul>
+                        <li>• Create an account</li>
+                        <li>• Verify your identity</li>
+                        <li>• Make your first deposit</li>
+                    </ul>
+                </div>
+                <div class="bonus-box">
+                    <h3>🚀 Quick Start</h3>
+                    <ul>
+                        <li>• Get ₦500 instant credit</li>
+                        <li>• Start completing tasks</li>
+                        <li>• Withdraw on 10th & 30th</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bonus-highlight">
+                💡 The ₦500 bonus is only accessible after you deposit a minimum of ₦4,500 (VIP 1). This unlocks VIP status and gives you access to all platform features.
+            </div>
+        </section>
+
+        <!-- VIP Tiers Section -->
+        <section class="vip-tiers">
+            <h2>💎 VIP Deposit Tiers</h2>
+            <p style="text-align: center; color: #6b7280; margin-bottom: 30px;">Choose your deposit level and unlock exclusive benefits</p>
+            <div class="vip-grid">
+                <div class="vip-card">
+                    <span class="badge">VIP 1</span>
+                    <div class="amount">₦4,500</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">+ ₦500 Bonus</p>
+                </div>
+                <div class="vip-card">
+                    <span class="badge">VIP 2</span>
+                    <div class="amount">₦7,900</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">Premium Features</p>
+                </div>
+                <div class="vip-card">
+                    <span class="badge">VIP 3</span>
+                    <div class="amount">₦10,000</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">Extra Earnings</p>
+                </div>
+                <div class="vip-card">
+                    <span class="badge">VIP 4</span>
+                    <div class="amount">₦15,000</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">Priority Support</p>
+                </div>
+                <div class="vip-card">
+                    <span class="badge">VIP 5</span>
+                    <div class="amount">₦20,000</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">Higher Earnings</p>
+                </div>
+                <div class="vip-card">
+                    <span class="badge">VIP 6</span>
+                    <div class="amount">₦30,000</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">VIP Benefits</p>
+                </div>
+                <div class="vip-card">
+                    <span class="badge">VIP 7</span>
+                    <div class="amount">₦35,000</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">Elite Status</p>
+                </div>
+                <div class="vip-card">
+                    <span class="badge">VIP 8</span>
+                    <div class="amount">₦50,000</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">Max Benefits</p>
+                </div>
+                <div class="vip-card">
+                    <span class="badge">VIP 9</span>
+                    <div class="amount">₦60,000</div>
+                    <p style="font-size: 0.9em; color: #6b7280;">Premium Access</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pages Section -->
+        <section class="pages-section">
+            <h2>📱 Platform Pages</h2>
+            <div class="pages-grid">
+                <div class="page-item">
+                    <h3>🏠 Home</h3>
+                    <p>Main landing page with hero section, features showcase, and call-to-action buttons.</p>
+                    <ul class="features-list">
+                        <li>Hero banner</li>
+                        <li>Feature cards</li>
+                        <li>Bonus information</li>
+                        <li>Ad placements</li>
+                    </ul>
+                </div>
+                <div class="page-item">
+                    <h3>📋 Tasks</h3>
+                    <p>Browse and filter available tasks with real-time rewards and difficulty levels.</p>
+                    <ul class="features-list">
+                        <li>Task filtering</li>
+                        <li>Category filters</li>
+                        <li>Reward display</li>
+                        <li>Task details</li>
+                    </ul>
+                </div>
+                <div class="page-item">
+                    <h3>👥 Team/Groups</h3>
+                    <p>Join groups and collaborate with other members for exclusive bonuses.</p>
+                    <ul class="features-list">
+                        <li>Group browsing</li>
+                        <li>Member count</li>
+                        <li>Group bonuses</li>
+                        <li>Group details modal</li>
+                    </ul>
+                </div>
+                <div class="page-item">
+                    <h3>👤 Profile</h3>
+                    <p>Manage your account, deposits, withdrawals, and view transaction history.</p>
+                    <ul class="features-list">
+                        <li>Account overview</li>
+                        <li>Balance tracking</li>
+                        <li>VIP status</li>
+                        <li>Transactions</li>
+                    </ul>
+                </div>
+                <div class="page-item">
+                    <h3>💳 Deposit Page</h3>
+                    <p>Select VIP tier and make deposits via bank transfer with Paystack integration.</p>
+                    <ul class="features-list">
+                        <li>VIP tier selection</li>
+                        <li>Bank details display</li>
+                        <li>Payment options</li>
+                        <li>Confirmation</li>
+                    </ul>
+                </div>
+                <div class="page-item">
+                    <h3>💸 Withdrawal Page</h3>
+                    <p>Add bank account and request withdrawals on 10th & 30th of every month.</p>
+                    <ul class="features-list">
+                        <li>Bank account setup</li>
+                        <li>Withdrawal schedule</li>
+                        <li>Amount entry</li>
+                        <li>Processing info</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Information -->
+        <section class="payment-info">
+            <h3>🏦 Payment Integration</h3>
+            <p>We support multiple payment methods for your convenience:</p>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #7e22ce;">Bank Transfer (Opay)</strong>
+                <div class="bank-details">
+                    <div class="account-number">9021318622</div>
+                    <div class="account-name">Account: AntarcticEarn</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px;">
+                    <strong style="color: #7e22ce;">Supported Methods:</strong>
+                    <p style="margin-top: 10px; color: #6b7280;">
+                        ✓ Paystack<br>
+                        ✓ Opay<br>
+                        ✓ Titan
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <strong style="color: #7e22ce;">Withdrawal Schedule:</strong>
+                    <p style="margin-top: 10px; color: #6b7280;">
+                        📅 10th of every month<br>
+                        📅 30th of every month<br>
+                        ⏱️ 2-3 business days processing
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation & Setup -->
+        <section class="pages-section">
+            <h2>🚀 Getting Started</h2>
+            <div style="background: #f3e8ff; padding: 25px; border-radius: 12px; color: #6b7280;">
+                <p style="margin-bottom: 15px;"><strong style="color: #7e22ce;">1. Clone the Repository:</strong></p>
+                <code style="background: white; padding: 10px; border-radius: 6px; display: block; margin-bottom: 20px; border: 1px solid #d8b4fe;">
+                    git clone https://github.com/oskonbo568-source/antarticearn.git
+                </code>
+
+                <p style="margin-bottom: 15px;"><strong style="color: #7e22ce;">2. Install Dependencies:</strong></p>
+                <code style="background: white; padding: 10px; border-radius: 6px; display: block; margin-bottom: 20px; border: 1px solid #d8b4fe;">
+                    npm install
+                </code>
+
+                <p style="margin-bottom: 15px;"><strong style="color: #7e22ce;">3. Run Development Server:</strong></p>
+                <code style="background: white; padding: 10px; border-radius: 6px; display: block; margin-bottom: 20px; border: 1px solid #d8b4fe;">
+                    npm run dev
+                </code>
+
+                <p style="margin-bottom: 15px;"><strong style="color: #7e22ce;">4. Open in Browser:</strong></p>
+                <code style="background: white; padding: 10px; border-radius: 6px; display: block; border: 1px solid #d8b4fe;">
+                    http://localhost:3000
+                </code>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="pages-section">
+            <h2>⚙️ Technology Stack</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: #f3e8ff; padding: 20px; border-radius: 12px; border: 1px solid #d8b4fe;">
+                    <strong style="color: #7e22ce; display: block; margin-bottom: 10px;">Frontend</strong>
+                    <p style="color: #6b7280; font-size: 0.95em;">
+                        • Next.js 14<br>
+                        • React 18<br>
+                        • TypeScript<br>
+                        • Tailwind CSS
+                    </p>
+                </div>
+                <div style="background: #f3e8ff; padding: 20px; border-radius: 12px; border: 1px solid #d8b4fe;">
+                    <strong style="color: #7e22ce; display: block; margin-bottom: 10px;">Design & Styling</strong>
+                    <p style="color: #6b7280; font-size: 0.95em;">
+                        • Purple color scheme<br>
+                        • Responsive design<br>
+                        • Mobile-first approach<br>
+                        • Custom CSS utilities
+                    </p>
+                </div>
+                <div style="background: #f3e8ff; padding: 20px; border-radius: 12px; border: 1px solid #d8b4fe;">
+                    <strong style="color: #7e22ce; display: block; margin-bottom: 10px;">Features</strong>
+                    <p style="color: #6b7280; font-size: 0.95em;">
+                        • Responsive UI<br>
+                        • Interactive components<br>
+                        • Form validation<br>
+                        • State management
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 AntarcticEarn. All rights reserved.</p>
+            <p>Earn Money by Joining Groups & Completing Tasks</p>
+            <p>Payment Processing: Paystack | Opay | Titan</p>
+            <div class="social-links">
+                <a href="https://github.com/oskonbo568-source/antarticearn">GitHub</a>
+                <a href="mailto:support@antarticearn.com">Support</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
